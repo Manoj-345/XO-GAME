@@ -6,13 +6,12 @@
     {
       "name": "xo-game-container",
       "image": "228907232010.dkr.ecr.ap-south-1.amazonaws.com/xo-game:latest",
-      "portMappings": [
+     "portMappings": [
   {
     "containerPort": 5000,
     "protocol": "tcp"
   }
-
-      ],
+],
       "essential": true
     }
   ],

@@ -18,7 +18,7 @@ def generate_user_id():
 
 @app.route('/')
 def home():
-    return 'OK', 200
+    return 'index.html',
 
 
 @app.route('/game')
