@@ -1,3 +1,6 @@
+import eventlet
+eventlet.monkey_patch()
+
 from flask import Flask, render_template, request, redirect, url_for
 from flask_socketio import SocketIO, emit, join_room
 import random
@@ -5,7 +8,7 @@ import string
 
 app = Flask(__name__)
 app.config['SECRET_KEY'] = 'secret!'
-socketio = SocketIO(app, cors_allowed_origins="*")
+socketio = SocketIO(app, cors_allowed_origins="*", async_mode="eventlet")
 
 room_data = {}
 players = {}
@@ -15,7 +18,8 @@ def generate_user_id():
 
 @app.route('/')
 def home():
-    return render_template('home.html')
+    return 'OK', 200
+
 
 @app.route('/game')
 def game():
@@ -162,4 +166,4 @@ def check_winner(board):
     return None
 
 if __name__ == '__main__':
-    socketio.run(app, host='0.0.0.0', port=5000, debug=True)
+    socketio.run(app, host='0.0.0.0', port=5000)
