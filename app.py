@@ -18,7 +18,8 @@ def generate_user_id():
 
 @app.route('/')
 def home():
-    return 'index.html',
+    return render_template('home.html')  # Make sure home.html exists and renders
+
 
 
 @app.route('/game')
