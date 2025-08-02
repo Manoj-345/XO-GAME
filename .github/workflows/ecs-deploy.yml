@@ -9,21 +9,21 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-    - name: 🛎️ Checkout Code
+    - name:  Checkout Code
       uses: actions/checkout@v3
 
-    - name: 🔐 Configure AWS Credentials
+    - name:  Configure AWS Credentials
       uses: aws-actions/configure-aws-credentials@v2
       with:
         aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
         aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
         aws-region: ${{ secrets.AWS_REGION }}  
 
-    - name: 🔑 Login to Amazon ECR
+    - name:  Login to Amazon ECR
       id: login-ecr
       uses: aws-actions/amazon-ecr-login@v2
 
-    - name: 🐳 Build and Push Docker Image to ECR
+    - name:  Build and Push Docker Image to ECR
       env:
         ECR_REGISTRY: ${{ steps.login-ecr.outputs.registry }}
         ECR_REPOSITORY: xo-game
@@ -33,7 +33,7 @@ jobs:
         docker tag $ECR_REPOSITORY:$IMAGE_TAG $ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG
         docker push $ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG
 
-    - name: 🚀 Deploy to ECS Fargate
+    - name: Deploy to ECS Fargate
       uses: aws-actions/amazon-ecs-deploy-task-definition@v1
       with:
         task-definition: ecs-task-def.json
