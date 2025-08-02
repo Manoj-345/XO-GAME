@@ -1,11 +1,11 @@
 {
   "family": "xo-game-task",
   "networkMode": "awsvpc",
-  "executionRoleArn": "arn:aws:iam::<ACCOUNT_ID>:role/ecsTaskExecutionRole",
+  "executionRoleArn": "arn:aws:iam::228907232010:role/ecsTaskExecutionRoles",
   "containerDefinitions": [
     {
       "name": "xo-game-container",
-      "image": "<ACCOUNT_ID>.dkr.ecr.<REGION>.amazonaws.com/xo-game:latest",
+      "image": "228907232010.dkr.ecr.ap-south-1.amazonaws.com/xo-game:latest",
       "portMappings": [
         {
           "containerPort": 5000,
